@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""
+0-main
+"""
 def pascal_triangle(n):
     # Check if n is less than or equal to 0
     if n <= 0:
