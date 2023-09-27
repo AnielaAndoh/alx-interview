@@ -1,23 +1,20 @@
 def pascal_triangle(n):
+    # Check if n is less than or equal to 0
     if n <= 0:
-        return []
-
-    triangle = []
-    for i in range(n):
-        row = [1]  # First element in every row is always 1
-        if triangle:  # If there are previous rows
-            prev_row = triangle[-1]
-            for j in range(1, i):
-                # Calculate the next element in the row based on the previous row
-                row.append(prev_row[j - 1] + prev_row[j])
-            row.append(1)  # Last element in every row is always 1
-        triangle.append(row)
-
-    return triangle
-
-# Example usage:
-n = 5
-result = pascal_triangle(n)
-for row in result:
-    print(row)
+        return []  # Return an empty list
+    
+    # Initialize pascal with the first row containing 1
+    pascal = [[1]]
+    
+    # Loop to generate each subsequent row
+    for i in range(1, n):
+        row = [1]  # Start with the first element as 1
+        for j in range(1, i):
+            # Calculate each element based on the previous row
+            element = pascal[i-1][j-1] + pascal[i-1][j]
+            row.append(element)
+        row.append(1)  # Append the last element as 1
+        pascal.append(row)  # Append the current row to pascal
+    
+    return pascal
 
