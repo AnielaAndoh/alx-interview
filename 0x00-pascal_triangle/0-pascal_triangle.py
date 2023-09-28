@@ -1,24 +1,23 @@
-#!/usr/bin/python3
-"""
-0-main
-"""
 def pascal_triangle(n):
-    # Check if n is less than or equal to 0
+    triangle = []  # Initialize an empty list to store the rows of Pascal's triangle.
+
     if n <= 0:
-        return []  # Return an empty list
-    
-    # Initialize pascal with the first row containing 1
-    pascal = [[1]]
-    
-    # Loop to generate each subsequent row
+        return []  # Return an empty list for n <= 0.
+
+    # Create the first row with a single element (1).
+    triangle.append([1])
+
     for i in range(1, n):
-        row = [1]  # Start with the first element as 1
+        row = []  # Initialize an empty list for the current row.
+        row.append(1)  # The first element is always 1.
+
         for j in range(1, i):
-            # Calculate each element based on the previous row
-            element = pascal[i-1][j-1] + pascal[i-1][j]
-            row.append(element)
-        row.append(1)  # Append the last element as 1
-        pascal.append(row)  # Append the current row to pascal
-    
-    return pascal
+            # Compute the value at row[j] by summing the values from the previous row.
+            value = triangle[i - 1][j - 1] + triangle[i - 1][j]
+            row.append(value)  # Append the computed value to the current row.
+
+        row.append(1)  # The last element is always 1.
+        triangle.append(row)  # Append the current row to the triangle.
+
+    return triangle  # Return the Pascal's triangle.
 
